@@ -6,7 +6,7 @@ and represents as opensource SIEM solution.
 Technologies:
   - vagrant (virtualisation management)
   - docker (containerization)
-  - dcoker-compose (orchestration)
+  - dcoker-compose 
   - Elasticsearch
   - Logstash
   - Kibana
