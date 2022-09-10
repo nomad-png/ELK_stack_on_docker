@@ -1,6 +1,6 @@
 nodes = [
-  { :hostname => 'centos1', :ip => '192.168.1.240', :memory => 512, :cpu => 1, :boxname => "centos/7"},
-  { :hostname => 'centos2', :ip => '192.168.1.241', :memory => 2048, :cpu => 2, :boxname => "centos/7"},
+  { :hostname => 'centosAnsible', :ip => '192.168.1.240', :memory => 512, :cpu => 1, :boxname => "centos/7"},
+  { :hostname => 'centosSlave', :ip => '192.168.1.241', :memory => 2048, :cpu => 2, :boxname => "centos/7"},
 ]
 #Definig some nodes and then configuring them in loop like matter
 

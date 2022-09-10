@@ -1,25 +1,57 @@
 ---
-- name: Install nginx
-  hosts: centos2
-  become: true
+- name: ___ Install docker ___
+  gather_facts: No
+  become: yes
+  hosts: centosSlave
 
   tasks:
-  - name: Add epel-release repo
+  - name: +++ Install yum utils +++
     yum:
-      name: epel-release
-      state: present
+      name: yum-utils
+      state: latest
 
-  - name: Install nginx
+  - name: +++ Install dmpd +++
     yum:
-      name: nginx
-      state: present
+      name: device-mapper-persistent-data
+      state: latest
 
-  - name: Insert Index Page
-    template:
-      src: index.html
-      dest: /usr/share/nginx/html/index.html
+  - name: +++ Install lvm2 +++
+    yum:
+      name: lvm2
+      state: latest
 
-  - name: Start NGiNX
+  - name: +++ Add docker repo +++
+    get_url:
+      url: https://download.docker.com/linux/centos/docker-ce.repo
+      dest: /etc/yum.repos.d/docer-ce.repo
+
+  - name: +++ Enable docker Edge repo +++
+    ini_file:
+      dest: /etc/yum.repos.d/docker-ce.repo
+      section: 'docker-ce-edge'
+      option: enabled
+      value: 0
+
+  - name: +++ Enable Docker Test repo +++
+    ini_file:
+      dest: /etc/yum.repos.d/docer-ce.repo
+      section: 'docker-ce-test'
+      option: enabled
+      value: 0
+
+  - name: +++ Install Docker +++
+    package:
+      name: docker-ce
+      state: latest
+
+  - name: +++ Start Docker service +++
     service:
-      name: nginx
+      name: docker
       state: started
+      enabled: yes
+
+  - name: +++ Add user vagrant to docker group +++
+    user:
+      name: vagrant
+      groups: docker
+      append: yes
