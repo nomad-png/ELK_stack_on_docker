@@ -15,3 +15,12 @@ Technologies:
   - Kibana
   - Elastalert
   - SIGMA
+
+#TODOs:
+  - make two separate boxes (done)
+  - make one box manage another via ansible_local
+  - docker install via ansible (done)
+  - deploy elk stack and configure via ansible
+  - make new dockerimage or use existing elastalert image
+  - *EXPERIMENTAL CI|CD pull SIGMA FROM REPO every 7days
+    - auto deploy rules to elastalert
